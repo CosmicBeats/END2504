@@ -13,7 +13,19 @@ UCLASS()
 class END2504_API ABasePlayer : public ABaseCharacter
 {
 	GENERATED_BODY()
+
+
 protected:
 	ABasePlayer();
 	class USpringArmComponent* SpringArm;
+	class UCameraComponent* Camera;
+
+
+
+public:
+
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+
+
 };
