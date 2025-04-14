@@ -10,11 +10,13 @@
 ABasePlayer::ABasePlayer()
 {
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
-	SpringArm->SetRelativeLocation(FVector(0.f, 80.f, 90.f));
 	SpringArm->SetupAttachment(GetRootComponent());
+	SpringArm->SetRelativeLocation(FVector(0.f, 0.f, 90.f));
+	
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+	
 }
 
 void ABasePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -24,4 +26,23 @@ void ABasePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("TurnRight", this, &ABasePlayer::AddControllerYawInput);
 
 	PlayerInputComponent->BindAxis("LookUp", this, &ABasePlayer::AddControllerPitchInput);
+
+
+	PlayerInputComponent->BindAxis("MoveForward", this, &ABasePlayer::InputAxisMoveForward);
+	PlayerInputComponent->BindAxis("Strafe", this, &ABasePlayer::InputAxisStrafe);
+}
+
+void ABasePlayer::InputAxisMoveForward(float AxisValue)
+{
+	FRotator ReturnValue = GetControlRotation();
+	float Yaw = ReturnValue.Yaw;
+	FRotator MakeRotator(0.0f, Yaw, 0.0f);
+	FVector WorldDirection = MakeRotator.Vector();
+	AddMovementInput(WorldDirection, AxisValue);
+}
+
+void ABasePlayer::InputAxisStrafe(float AxisValue)
+{
+	FVector StrafeDirection = GetActorRightVector();
+	AddMovementInput(StrafeDirection, AxisValue);
 }

@@ -14,10 +14,16 @@ class END2504_API ABasePlayer : public ABaseCharacter
 {
 	GENERATED_BODY()
 
+private:
+	void InputAxisMoveForward(float AxisValue);
+	void InputAxisStrafe(float AxisValue);
 
 protected:
 	ABasePlayer();
+
+	UPROPERTY(EditDefaultsOnly)
 	class USpringArmComponent* SpringArm;
+	UPROPERTY(EditDefaultsOnly)
 	class UCameraComponent* Camera;
 
 
