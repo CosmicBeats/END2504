@@ -12,9 +12,8 @@ void UCharacterAnimation::NativeUpdateAnimation(float DeltaSeconds)
 	if (Pawn)
 	{
 		// is valid
-		Velocity = Pawn->GetVelocity().Length();
-		FRotator ActorRotation = Pawn->GetActorRotation();
-		CalculateDirection(FVector(Velocity), ActorRotation);
+		Velocity = Pawn->GetVelocity().Size();
+		Direction = CalculateDirection(Pawn->GetVelocity(), Pawn->GetControlRotation());
 
 	}
 	else
