@@ -4,12 +4,13 @@
 #include "BaseCharacter.h"
 
 #include "Components/ChildActorComponent.h"
+#include "BaseRifle.h"
 
 // Sets default values
 ABaseCharacter::ABaseCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 	GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
 	GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
@@ -26,6 +27,13 @@ void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	ChildActorComponent->SetChildActorClass(WeaponClass);
+
+	/*Rifle = Cast<ABaseRifle>(ChildActorComponent);
+
+	if (Rifle == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Rifle is null"));
+	}*/
 }
 
 // Called every frame

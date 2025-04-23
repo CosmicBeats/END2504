@@ -20,21 +20,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Do Stuff Here")
-	FName InSocketName;
+	UPROPERTY(EditDefaultsOnly)
+	USkeletalMeshComponent* SkeletalMeshComponent;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Do Stuff Here")
-	class USkeletalMeshComponent* SkeletalMeshComponent;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Do Stuff Here")
+	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> ProjectileClass;
 
-	AActor* ParentActor;
+	AActor* Actor;
 	APawn* Pawn;
 	AController* PawnController;
 	FRotator AimRotation;
 	FVector SocketLocation;
-	FTransform Transform;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName InSocketName;
 
 public:	
 	// Called every frame

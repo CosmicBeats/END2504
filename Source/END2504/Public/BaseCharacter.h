@@ -29,6 +29,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Do stuff here")
 	TSubclassOf<AActor>  WeaponClass;
 
+	//class ABaseRifle Rifle;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

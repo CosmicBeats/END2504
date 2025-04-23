@@ -11,7 +11,7 @@ ABaseRifle::ABaseRifle()
 	SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>("SK_Rifle");
 
 
-	ParentActor = GetOwner();
+	
 	
 }
 
@@ -19,23 +19,35 @@ void ABaseRifle::Attack()
 {
 	FActorSpawnParameters Parameters;
 
-	AimRotation = Pawn->GetBaseAimRotation();
-	SocketLocation = SkeletalMeshComponent->GetSocketLocation(InSocketName);
-
 	PawnController = Pawn->GetController();
 
-	Transform = FTransform(AimRotation, SocketLocation);
 
-	Parameters.Instigator = Pawn;
 	Parameters.Owner = PawnController;
-	GetWorld()->SpawnActor<AActor>(ProjectileClass, Transform, Parameters);
+	Parameters.Instigator = Pawn;
+
+	AimRotation = Pawn->GetBaseAimRotation();
+
+	SocketLocation = SkeletalMeshComponent->GetSocketLocation(InSocketName);
+
+	GetWorld()->SpawnActor<AActor>(ProjectileClass, SocketLocation, AimRotation, Parameters);
 }
 
 // Called when the game starts or when spawned
 void ABaseRifle::BeginPlay()
 {
 	Super::BeginPlay();
-	Pawn = Cast<APawn>(ParentActor);
+	Actor = GetParentActor();
+	Pawn = Cast<APawn>(Actor);
+
+	if (Pawn == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Pawn is null"));
+		Destroy();
+	}
+	else
+	{
+
+	}
 }
 
 // Called every frame
