@@ -4,7 +4,8 @@
 #include "BasePlayer.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
-
+#include "CharacterAnimation.h"
+#include "BaseRifle.h"
 
 
 ABasePlayer::ABasePlayer()
@@ -30,6 +31,9 @@ void ABasePlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &ABasePlayer::InputAxisMoveForward);
 	PlayerInputComponent->BindAxis("Strafe", this, &ABasePlayer::InputAxisStrafe);
+
+
+	PlayerInputComponent->BindAction("Attack", EInputEvent::IE_Pressed, this, &ABasePlayer::HandleAttack);
 }
 
 void ABasePlayer::InputAxisMoveForward(float AxisValue)
@@ -45,4 +49,10 @@ void ABasePlayer::InputAxisStrafe(float AxisValue)
 {
 	FVector StrafeDirection = GetActorRightVector();
 	AddMovementInput(StrafeDirection, AxisValue);
+}
+
+void ABasePlayer::HandleAttack()
+{
+	BaseRifle->Attack();
+	CharacterAnimation->FireAnimation();
 }

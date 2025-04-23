@@ -16,6 +16,9 @@ class END2504_API UCharacterAnimation : public UAnimInstance
 public:
 	void NativeUpdateAnimation(float DeltaSeconds) override;
 
+	UCharacterAnimation();
+	void FireAnimation();
+
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Default)
 	float Velocity;
@@ -23,4 +26,14 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Default)
 	float Direction;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = VisibleDefaultsOnly)
+	bool DebugFire;
+
+	void PreviewWindowUpdate();
+
+
+
+
+private:
+	UAnimSequenceBase* FireAnimationAsset;
 };

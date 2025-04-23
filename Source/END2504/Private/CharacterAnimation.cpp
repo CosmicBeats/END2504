@@ -4,6 +4,12 @@
 #include "CharacterAnimation.h"
 #include "KismetAnimationLibrary.h"
 
+UCharacterAnimation::UCharacterAnimation()
+{
+	ConstructorHelpers::FObjectFinder<UAnimSequenceBase> FireAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/Animations/A_Fire_Ironsights.A_Fire_Ironsights'"));
+	FireAnimationAsset = FireAsset.Object;
+}
+
 void UCharacterAnimation::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
@@ -18,6 +24,24 @@ void UCharacterAnimation::NativeUpdateAnimation(float DeltaSeconds)
 	}
 	else
 	{
-		// not valid
+		PreviewWindowUpdate();
 	}
+}
+
+void UCharacterAnimation::PreviewWindowUpdate()
+{
+	if (DebugFire == true)
+	{
+		FireAnimation();
+		DebugFire = false;
+	}
+	else
+	{
+
+	}
+}
+
+void UCharacterAnimation::FireAnimation()
+{
+	PlaySlotAnimationAsDynamicMontage(FireAnimationAsset, TEXT("ActionSlotName"));
 }

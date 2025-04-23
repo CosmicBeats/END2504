@@ -19,6 +19,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditDefaultsOnly)
+	UChildActorComponent* ChildActorComponent;
+
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Do Stuff Here")
+	class USkeletalMeshComponent* SkeletalMeshComponent;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Do stuff here")
+	TSubclassOf<AActor>  WeaponClass;
 
 public:	
 	// Called every frame

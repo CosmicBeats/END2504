@@ -18,6 +18,8 @@ private:
 	void InputAxisMoveForward(float AxisValue);
 	void InputAxisStrafe(float AxisValue);
 
+	void HandleAttack();
+
 protected:
 	ABasePlayer();
 
@@ -26,7 +28,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	class UCameraComponent* Camera;
 
-
+	class ABaseRifle* BaseRifle;
+	class UCharacterAnimation* CharacterAnimation;
 
 public:
 

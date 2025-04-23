@@ -3,6 +3,8 @@
 
 #include "BaseCharacter.h"
 
+#include "Components/ChildActorComponent.h"
+
 // Sets default values
 ABaseCharacter::ABaseCharacter()
 {
@@ -11,13 +13,19 @@ ABaseCharacter::ABaseCharacter()
 	PrimaryActorTick.bStartWithTickEnabled = false;
 	GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -90.f));
 	GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+
+
+	SkeletalMeshComponent = GetMesh();
+
+	ChildActorComponent = CreateDefaultSubobject<UChildActorComponent>("ChildActorComponent");
+	ChildActorComponent->SetupAttachment(SkeletalMeshComponent, FName("PlaceWeaponHere"));
 }
 
 // Called when the game starts or when spawned
 void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	ChildActorComponent->SetChildActorClass(WeaponClass);
 }
 
 // Called every frame
