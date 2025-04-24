@@ -19,21 +19,24 @@ public:
 	UCharacterAnimation();
 	void FireAnimation();
 
+	
+
 protected:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Default)
+
+	UPROPERTY(EditAnywhere)
+	UAnimSequenceBase* FireAnimationAsset;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float Velocity;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Default)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float Direction;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = VisibleDefaultsOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	bool DebugFire;
 
 	void PreviewWindowUpdate();
 
-
-
-
 private:
-	UAnimSequenceBase* FireAnimationAsset;
+
 };

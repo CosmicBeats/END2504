@@ -28,8 +28,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	class UCameraComponent* Camera;
 
-	class ABaseRifle* BaseRifle;
-	class UCharacterAnimation* CharacterAnimation;
+	
+	
 
 public:
 

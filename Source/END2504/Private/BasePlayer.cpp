@@ -17,6 +17,9 @@ ABasePlayer::ABasePlayer()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
+
+	
+
 	
 }
 
@@ -53,6 +56,6 @@ void ABasePlayer::InputAxisStrafe(float AxisValue)
 
 void ABasePlayer::HandleAttack()
 {
-	BaseRifle->Attack();
+	WeaponObject->Attack();
 	CharacterAnimation->FireAnimation();
 }

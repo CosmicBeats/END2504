@@ -2,7 +2,7 @@
 
 
 #include "BaseCharacter.h"
-
+#include "CharacterAnimation.h"
 #include "Components/ChildActorComponent.h"
 #include "BaseRifle.h"
 
@@ -28,12 +28,10 @@ void ABaseCharacter::BeginPlay()
 	Super::BeginPlay();
 	ChildActorComponent->SetChildActorClass(WeaponClass);
 
-	/*Rifle = Cast<ABaseRifle>(ChildActorComponent);
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	CharacterAnimation = Cast<UCharacterAnimation>(AnimInstance);
 
-	if (Rifle == nullptr)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Rifle is null"));
-	}*/
+	WeaponObject = Cast<ABaseRifle>(ChildActorComponent->GetChildActor());
 }
 
 // Called every frame

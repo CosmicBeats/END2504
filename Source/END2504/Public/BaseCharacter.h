@@ -23,11 +23,18 @@ protected:
 	UChildActorComponent* ChildActorComponent;
 
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Do Stuff Here")
+	UPROPERTY(EditDefaultsOnly)
 	class USkeletalMeshComponent* SkeletalMeshComponent;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Do stuff here")
-	TSubclassOf<AActor>  WeaponClass;
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AActor> WeaponClass;
+
+	class ABaseRifle* WeaponObject;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UAnimInstance> CharacterAnimationClass;
+
+	class UCharacterAnimation* CharacterAnimation;
 
 	//class ABaseRifle Rifle;
 

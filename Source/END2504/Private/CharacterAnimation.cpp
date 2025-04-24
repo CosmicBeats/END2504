@@ -6,8 +6,7 @@
 
 UCharacterAnimation::UCharacterAnimation()
 {
-	ConstructorHelpers::FObjectFinder<UAnimSequenceBase> FireAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/Animations/A_Fire_Ironsights.A_Fire_Ironsights'"));
-	FireAnimationAsset = FireAsset.Object;
+	
 }
 
 void UCharacterAnimation::NativeUpdateAnimation(float DeltaSeconds)
@@ -43,5 +42,8 @@ void UCharacterAnimation::PreviewWindowUpdate()
 
 void UCharacterAnimation::FireAnimation()
 {
-	PlaySlotAnimationAsDynamicMontage(FireAnimationAsset, TEXT("ActionSlotName"));
+	
+	PlaySlotAnimationAsDynamicMontage(FireAnimationAsset, FName("ActionSlotName"));
+
+	
 }
