@@ -42,8 +42,7 @@ void UCharacterAnimation::PreviewWindowUpdate()
 
 void UCharacterAnimation::FireAnimation()
 {
-	
+
 	PlaySlotAnimationAsDynamicMontage(FireAnimationAsset, FName("ActionSlotName"));
 
-	
 }

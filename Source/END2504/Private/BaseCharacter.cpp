@@ -4,6 +4,7 @@
 #include "BaseCharacter.h"
 #include "CharacterAnimation.h"
 #include "Components/ChildActorComponent.h"
+
 #include "BaseRifle.h"
 
 // Sets default values
@@ -32,6 +33,8 @@ void ABaseCharacter::BeginPlay()
 	CharacterAnimation = Cast<UCharacterAnimation>(AnimInstance);
 
 	WeaponObject = Cast<ABaseRifle>(ChildActorComponent->GetChildActor());
+
+
 }
 
 // Called every frame

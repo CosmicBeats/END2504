@@ -32,8 +32,19 @@ protected:
 	FRotator AimRotation;
 	FVector SocketLocation;
 
+	FTimerHandle TimerHandler;
+	FTimerDelegate TimerDelegate;
+
+	bool ActionHappening;
+
 	UPROPERTY(EditDefaultsOnly)
 	FName InSocketName;
+
+	bool CanShoot();
+	UFUNCTION()
+	void ActionStopped();
+
+	float FireRate();
 
 public:	
 	// Called every frame

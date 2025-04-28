@@ -3,8 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Delegates/Delegate.h"
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDelegate, AActor*, OtherActor);
 
 UCLASS(Abstract)
 class END2504_API ABaseCharacter : public ACharacter
@@ -35,6 +38,8 @@ protected:
 	TSubclassOf<UAnimInstance> CharacterAnimationClass;
 
 	class UCharacterAnimation* CharacterAnimation;
+
+	FDelegate OnDelegateInstance;
 
 	//class ABaseRifle Rifle;
 

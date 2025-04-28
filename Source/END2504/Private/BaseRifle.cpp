@@ -2,6 +2,8 @@
 
 
 #include "BaseRifle.h"
+#include "TimerManager.h"
+#include "Engine/World.h"
 
 // Sets default values
 ABaseRifle::ABaseRifle()
@@ -17,19 +19,28 @@ ABaseRifle::ABaseRifle()
 
 void ABaseRifle::Attack()
 {
-	FActorSpawnParameters Parameters;
+	if (CanShoot())
+	{
+		FActorSpawnParameters Parameters;
 
-	PawnController = Pawn->GetController();
+		PawnController = Pawn->GetController();
 
 
-	Parameters.Owner = PawnController;
-	Parameters.Instigator = Pawn;
+		Parameters.Owner = PawnController;
+		Parameters.Instigator = Pawn;
 
-	AimRotation = Pawn->GetBaseAimRotation();
+		AimRotation = Pawn->GetBaseAimRotation();
 
-	SocketLocation = SkeletalMeshComponent->GetSocketLocation(InSocketName);
+		SocketLocation = SkeletalMeshComponent->GetSocketLocation(InSocketName);
 
-	GetWorld()->SpawnActor<AActor>(ProjectileClass, SocketLocation, AimRotation, Parameters);
+		GetWorld()->SpawnActor<AActor>(ProjectileClass, SocketLocation, AimRotation, Parameters);
+
+		ActionHappening = true;
+
+		GetWorldTimerManager().SetTimer(TimerHandler, TimerDelegate, FireRate(), false);
+	}
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -38,6 +49,8 @@ void ABaseRifle::BeginPlay()
 	Super::BeginPlay();
 	Actor = GetParentActor();
 	Pawn = Cast<APawn>(Actor);
+
+	TimerDelegate.BindUFunction(this, FName("ActionStopped"));
 
 	if (Pawn == nullptr)
 	{
@@ -48,6 +61,21 @@ void ABaseRifle::BeginPlay()
 	{
 
 	}
+}
+
+bool ABaseRifle::CanShoot()
+{
+	return !ActionHappening;
+}
+
+void ABaseRifle::ActionStopped()
+{
+	ActionHappening = false;
+}
+
+float ABaseRifle::FireRate()
+{
+	return 2.0f;
 }
 
 // Called every frame
