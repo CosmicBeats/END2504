@@ -4,6 +4,7 @@
 #include "BaseRifle.h"
 #include "TimerManager.h"
 #include "Engine/World.h"
+#include "BaseCharacter.h"
 
 // Sets default values
 ABaseRifle::ABaseRifle()
@@ -49,6 +50,8 @@ void ABaseRifle::BeginPlay()
 	Super::BeginPlay();
 	Actor = GetParentActor();
 	Pawn = Cast<APawn>(Actor);
+
+
 
 	TimerDelegate.BindUFunction(this, FName("ActionStopped"));
 

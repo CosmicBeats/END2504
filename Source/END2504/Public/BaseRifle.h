@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "BaseRifle.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDelegateType, AActor*, OtherActor);
+
 UCLASS()
 class END2504_API ABaseRifle : public AActor
 {
@@ -19,6 +21,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 
 	UPROPERTY(EditDefaultsOnly)
 	USkeletalMeshComponent* SkeletalMeshComponent;
@@ -46,8 +49,12 @@ protected:
 
 	float FireRate();
 
+	
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	FDelegateType OnDelegateInstance;
 
 };

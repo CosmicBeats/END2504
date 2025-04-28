@@ -16,8 +16,13 @@ class END2504_API ABaseAgent : public ABaseCharacter
 
 public:
 	ABaseAgent();
+	virtual void PostLoad() override;
 
 private:
+	USkeletalMeshComponent* SkeletalMeshComponent;
+
+	UMaterialInstanceDynamic* DynamicMaterial;
+	
 
 	virtual void Tick(float DeltaTime) override;
 	

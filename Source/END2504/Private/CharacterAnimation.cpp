@@ -3,6 +3,8 @@
 
 #include "CharacterAnimation.h"
 #include "KismetAnimationLibrary.h"
+#include "TimerManager.h"
+#include "Engine/World.h"
 
 UCharacterAnimation::UCharacterAnimation()
 {
@@ -42,7 +44,8 @@ void UCharacterAnimation::PreviewWindowUpdate()
 
 void UCharacterAnimation::FireAnimation()
 {
-
+	
 	PlaySlotAnimationAsDynamicMontage(FireAnimationAsset, FName("ActionSlotName"));
-
+	
 }
+

@@ -57,5 +57,5 @@ void ABasePlayer::InputAxisStrafe(float AxisValue)
 void ABasePlayer::HandleAttack()
 {
 	WeaponObject->Attack();
-	//CharacterAnimation->FireAnimation();
+	CharacterAnimation->FireAnimation();
 }

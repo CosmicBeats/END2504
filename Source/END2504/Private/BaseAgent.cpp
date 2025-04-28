@@ -11,6 +11,17 @@ ABaseAgent::ABaseAgent()
 
 }
 
+void ABaseAgent::PostLoad()
+{
+	Super::PostLoad();
+
+	SkeletalMeshComponent = GetMesh();
+
+	DynamicMaterial = SkeletalMeshComponent->CreateAndSetMaterialInstanceDynamic(0);
+
+	DynamicMaterial->SetVectorParameterValue(FName("Tint"), FLinearColor::Yellow);
+}
+
 void ABaseAgent::Tick(float DeltaTime)
 {
 	WeaponObject->Attack();

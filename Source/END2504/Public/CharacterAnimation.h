@@ -39,4 +39,6 @@ protected:
 
 private:
 
+	FTimerHandle TimerHandler;
+	FTimerDelegate TimerDelegate;
 };

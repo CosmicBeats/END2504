@@ -17,6 +17,9 @@ class END2504_API ABaseCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ABaseCharacter();
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UAnimInstance> CharacterAnimationClass;
+	class UCharacterAnimation* CharacterAnimation;
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,10 +37,7 @@ protected:
 
 	class ABaseRifle* WeaponObject;
 
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UAnimInstance> CharacterAnimationClass;
-
-	class UCharacterAnimation* CharacterAnimation;
+	
 
 	FDelegate OnDelegateInstance;
 
