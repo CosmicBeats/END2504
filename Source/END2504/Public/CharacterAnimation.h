@@ -17,6 +17,8 @@ public:
 	void NativeUpdateAnimation(float DeltaSeconds) override;
 
 	UCharacterAnimation();
+
+	UFUNCTION()
 	void FireAnimation();
 
 	

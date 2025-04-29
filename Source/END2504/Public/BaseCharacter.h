@@ -3,11 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Delegates/Delegate.h"
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDelegate, AActor*, OtherActor);
 
 UCLASS(Abstract)
 class END2504_API ABaseCharacter : public ACharacter
@@ -37,11 +35,7 @@ protected:
 
 	class ABaseRifle* WeaponObject;
 
-	
 
-	FDelegate OnDelegateInstance;
-
-	//class ABaseRifle Rifle;
 
 public:	
 	// Called every frame

@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "BaseRifle.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FDelegateType, AActor*, OtherActor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDelegateType);
 
 UCLASS()
 class END2504_API ABaseRifle : public AActor
@@ -15,6 +15,7 @@ class END2504_API ABaseRifle : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
+	
 	ABaseRifle();
 	void Attack();
 
@@ -49,7 +50,6 @@ protected:
 
 	float FireRate();
 
-	
 
 public:	
 	// Called every frame

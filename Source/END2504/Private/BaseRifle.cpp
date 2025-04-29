@@ -4,6 +4,7 @@
 #include "BaseRifle.h"
 #include "TimerManager.h"
 #include "Engine/World.h"
+#include "CharacterAnimation.h"
 #include "BaseCharacter.h"
 
 // Sets default values
@@ -13,9 +14,6 @@ ABaseRifle::ABaseRifle()
 	PrimaryActorTick.bCanEverTick = true;
 	SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>("SK_Rifle");
 
-
-	
-	
 }
 
 void ABaseRifle::Attack()
@@ -39,6 +37,8 @@ void ABaseRifle::Attack()
 		ActionHappening = true;
 
 		GetWorldTimerManager().SetTimer(TimerHandler, TimerDelegate, FireRate(), false);
+
+		OnDelegateInstance.Broadcast();
 	}
 
 	
@@ -54,6 +54,8 @@ void ABaseRifle::BeginPlay()
 
 
 	TimerDelegate.BindUFunction(this, FName("ActionStopped"));
+
+	
 
 	if (Pawn == nullptr)
 	{
